@@ -49,7 +49,6 @@ footer{border-top:1px solid var(--line);padding:28px 5%;display:flex;justify-con
 <footer><a class="foot-logo" href="#">USER<span>HUNT</span></a><span>Поиск своего места в цифровом мире.</span><span>Независимый проект · 2026</span></footer><div class="toast" id="toast"></div>
 <script>
 const input=document.getElementById('username'),results=document.getElementById('results'),list=document.getElementById('resultList'),toast=document.getElementById('toast');
-const platforms={Telegram:n=>'https://t.me/'+n,Instagram:n=>'https://www.instagram.com/'+n+'/',TikTok:n=>'https://www.tiktok.com/@'+n,X:n=>'https://x.com/'+n,YouTube:n=>'https://www.youtube.com/@'+n,Twitch:n=>'https://www.twitch.tv/'+n,GitHub:n=>'https://github.com/'+n,Reddit:n=>'https://www.reddit.com/user/'+n};
 function notify(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2600)}
 function statusLabel(s){return ({taken:'ЗАНЯТ',possibly_available:'ВОЗМОЖНО СВОБОДЕН',unknown:'НЕ УДАЛОСЬ ПРОВЕРИТЬ',invalid:'НЕДОПУСТИМЫЙ ФОРМАТ'})[s]||'НЕИЗВЕСТНО'}
 async function check(){
@@ -61,21 +60,21 @@ async function check(){
  results.classList.add('show');list.innerHTML='<div class="result"><strong>Запрашиваем сервер…</strong></div>';
  try{
   const response=await fetch('/api/check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:name,platforms:chosen})});
-  const data=await response.json();
-  if(!response.ok)throw new Error(data.error||'Ошибка сервера');
+  const data=await response.json();if(!response.ok)throw new Error(data.error||'Ошибка сервера');
   document.getElementById('resultTitle').textContent='@'+data.username;
   document.getElementById('formatStatus').textContent='ПРОВЕРЕНО СЕРВЕРОМ';
   list.innerHTML='';
   data.results.forEach(item=>{
-   const row=document.createElement('div');row.className='result';
-   const left=document.createElement('div');const strong=document.createElement('strong');strong.textContent=item.platform;
+   const row=document.createElement('div');row.className='result';const left=document.createElement('div');
+   const strong=document.createElement('strong');strong.textContent=item.platform;
    const small=document.createElement('small');small.textContent=statusLabel(item.status)+' · '+item.message;
    left.append(strong,small);const a=document.createElement('a');a.href=item.url;a.target='_blank';a.rel='noopener';a.textContent='Открыть ↗';row.append(left,a);list.append(row);
   });
   const note=document.createElement('p');note.className='disclaimer';note.textContent=data.note;list.append(note);
- }catch(error){list.innerHTML='';const p=document.createElement('p');p.className='disclaimer';p.textContent='Не удалось связаться с сервером: '+error.message+'. Проверь, что Web Service USERHUNT запущен на Render.';list.append(p)}
- results.scrollIntoView({behavior:'smooth',block:'nearest'});
- finally{button.disabled=false;button.textContent='Проверить ↗'}
+ }catch(error){
+  list.innerHTML='';const p=document.createElement('p');p.className='disclaimer';
+  p.textContent='Не удалось связаться с сервером: '+error.message+'. Проверь, что Web Service USERHUNT запущен на Render.';list.append(p);
+ }finally{button.disabled=false;button.textContent='Проверить ↗';results.scrollIntoView({behavior:'smooth',block:'nearest'})}
 }
 document.getElementById('checkBtn').addEventListener('click',check);input.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
 document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',()=>notify(b.dataset.plan==='Starter'?'Базовый тариф бесплатный':'Подписка появится после запуска полной версии')));
