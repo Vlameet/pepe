@@ -89,6 +89,12 @@ footer{padding:35px 6vw;border-top:1px solid var(--line);display:flex;justify-co
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 const nav=document.querySelector('.nav');document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+const modelRoutes=['carrera','carrera-gts','turbo-s','gt3','gt3-rs','targa'];
+document.querySelectorAll('.model-card').forEach((card,i)=>{const route=modelRoutes[i];if(!route)return;card.style.cursor='pointer';card.setAttribute('role','link');card.setAttribute('tabindex','0');card.setAttribute('aria-label','Открыть страницу '+card.querySelector('h3').textContent);const go=()=>location.href=route+'/';card.addEventListener('click',go);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})});
+const brandRoutes=['718','taycan','panamera','macan','cayenne','carrera'];
+document.querySelectorAll('.brand-card').forEach((card,i)=>{const route=brandRoutes[i];if(!route)return;card.style.cursor='pointer';card.setAttribute('role','link');card.setAttribute('tabindex','0');card.setAttribute('aria-label','Открыть страницу '+card.querySelector('h3').textContent);const go=()=>location.href=route+'/';card.addEventListener('click',go);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})});
+
 const progress=document.getElementById('progress');window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(max>0?window.scrollY/max*100:0)+'%'},{passive:true});
 document.querySelectorAll('.model-card').forEach(card=>{card.addEventListener('pointermove',e=>{if(innerWidth<700)return;const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(900px) rotateY('+(x*5)+'deg) rotateX('+(-y*5)+'deg) translateY(-5px)'});card.addEventListener('pointerleave',()=>card.style.transform='')});
 </script>
