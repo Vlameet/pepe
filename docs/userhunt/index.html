@@ -27,7 +27,19 @@ h1{font-size:clamp(48px,8vw,94px);line-height:.98;letter-spacing:-.075em;max-wid
 .faq{padding:85px 0}.faq-list{max-width:800px;margin-top:30px}.faq details{border-bottom:1px solid var(--line);padding:18px 0}.faq summary{cursor:pointer;font-size:13px}.faq details p{color:#929d95;font-size:12px;line-height:1.8;max-width:680px}
 footer{border-top:1px solid var(--line);padding:28px 5%;display:flex;justify-content:space-between;gap:20px;color:#748078;font-size:10px}.foot-logo{font-weight:800;color:#eaf0e9;letter-spacing:-.04em}.foot-logo span{color:var(--lime)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#d8ff8a;color:#10170d;padding:12px 18px;border-radius:7px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:800px){.nav{display:none}.checker{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:14px}.price-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.platforms{grid-template-columns:1fr 1fr}.hero{padding:75px 0}.panel{padding:20px}}
+
+.generator{margin:28px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px}
+.generator-grid{display:grid;grid-template-columns:1.2fr .8fr auto;gap:12px;align-items:end}
+.generator label{display:block;color:#a9b5aa;font:10px 'DM Mono';letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+.generator input,.generator select{width:100%;background:#090d0b;border:1px solid #354238;border-radius:7px;color:white;padding:13px;font:13px Manrope;min-width:0}
+.generator button{background:var(--lime);color:#11170d;border:0;border-radius:7px;padding:14px 18px;font-weight:800;font-size:11px;cursor:pointer}
+.generator-results{display:grid;gap:8px;margin-top:18px}
+.suggestion{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;background:#0b100d;border:1px solid #26342a;border-radius:7px}
+.suggestion strong{font:13px 'DM Mono'}.suggestion small{display:block;color:#87948a;font-size:10px;margin-top:4px}
+.suggestion button{padding:8px 12px;font-size:10px}
+.generator-note{font-size:10px;line-height:1.7;color:#879188;margin-top:15px}
+@media(max-width:700px){.generator-grid{grid-template-columns:1fr}.generator{padding:19px}}
+\n@media(max-width:800px){.nav{display:none}.checker{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:14px}.price-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr 1fr}.platforms{grid-template-columns:1fr 1fr}.hero{padding:75px 0}.panel{padding:20px}}
 @media(max-width:500px){header{height:65px}.top-cta{font-size:10px;padding:9px}.feature-grid{grid-template-columns:1fr}.input-row{flex-wrap:wrap}.input-row button{width:100%}.input-row input{font-size:16px}.hero-bottom{align-items:flex-start;flex-direction:column;gap:14px}footer{flex-direction:column}}
 </style>
 </head>
@@ -42,7 +54,21 @@ footer{border-top:1px solid var(--line);padding:28px 5%;display:flex;justify-con
 <label class="platform"><input type="checkbox" value="Telegram" checked> Telegram</label><label class="platform"><input type="checkbox" value="Instagram" checked> Instagram</label><label class="platform"><input type="checkbox" value="TikTok" checked> TikTok</label><label class="platform"><input type="checkbox" value="X" checked> X / Twitter</label><label class="platform"><input type="checkbox" value="YouTube"> YouTube</label><label class="platform"><input type="checkbox" value="Twitch"> Twitch</label><label class="platform"><input type="checkbox" value="GitHub"> GitHub</label><label class="platform"><input type="checkbox" value="Reddit"> Reddit</label>
 </div><div class="results" id="results"><div class="result-head"><b id="resultTitle">Результаты</b><span id="formatStatus"></span></div><div class="result-list" id="resultList"></div><p class="disclaimer">Важно: сейчас это демонстрационный интерфейс. Он проверяет формат имени и формирует ссылки на профили, но не подтверждает фактическую занятость ника. Для настоящей проверки доступности нужен серверный модуль с интеграциями и соблюдением правил каждой платформы.</p></div></div>
 <aside class="panel"><h3 class="side-title">Как работает USERHUNT</h3><div class="steps"><div class="step"><span class="step-num">01</span><div><b>Задай имя</b><p>Введи желаемый ник или короткое слово, которое хочешь закрепить за собой.</p></div></div><div class="step"><span class="step-num">02</span><div><b>Выбери платформы</b><p>Отметь соцсети, в которых важно сохранить единый цифровой псевдоним.</p></div></div><div class="step"><span class="step-num">03</span><div><b>Сравни результаты</b><p>Открой профили и проверь имя. В полной версии статусы будут собираться автоматически.</p></div></div></div></aside></div></div></section>
-<section class="features" id="features"><div class="wrap"><div class="section-head"><div><div class="eyebrow">02 / Что внутри</div><h2>Охота за именем проще</h2></div><p>От быстрого поиска до инструментов для тех, кто строит личный бренд или проект.</p></div><div class="feature-grid"><article class="feature"><div class="symbol">⌕</div><h3>Мультиплатформенный поиск</h3><p>Один запрос для нескольких социальных сетей вместо десятка открытых вкладок.</p></article><article class="feature"><div class="symbol">↗</div><h3>Короткие и редкие ники</h3><p>Подбор по длине, символам и ключевым словам. Поиск запоминающихся вариантов.</p></article><article class="feature"><div class="symbol">◷</div><h3>История проверок</h3><p>Сохраняй понравившиеся варианты и возвращайся к ним позже.</p></article><article class="feature"><div class="symbol">◎</div><h3>Единый бренд</h3><p>Сравнивай совпадение имени между платформами и собирай единый никнейм.</p></article><article class="feature"><div class="symbol">⌘</div><h3>Расширенные фильтры</h3><p>Фильтруй по длине, цифрам, подчёркиваниям и желаемому стилю.</p></article><article class="feature"><div class="symbol">♢</div><h3>Уведомления</h3><p>В перспективе можно будет отслеживать изменение статуса выбранных имён.</p></article></div></div></section>
+
+<section class="tool-section" id="generator"><div class="wrap"><div class="section-head"><div><div class="eyebrow">01 / Username generator</div><h2>Пусть имя найдёт тебя</h2></div><p>Задай ключевое слово и стиль. USERHUNT создаст варианты и проверит их там, где доступна публичная проверка.</p></div>
+<div class="generator"><div class="generator-grid">
+<div><label for="genKeyword">Ключевое слово</label><input id="genKeyword" maxlength="24" placeholder="например, shadow"></div>
+<div><label for="genStyle">Стиль ника</label><select id="genStyle"><option value="short">Короткий</option><option value="clean" selected>Минималистичный</option><option value="gamer">Игровой</option><option value="creative">Необычный</option></select></div>
+<button id="generateBtn">Сгенерировать ↗</button>
+</div>
+<div class="field-label" style="margin-top:22px">Платформы для проверки</div>
+<div class="platforms" id="genPlatforms">
+<label class="platform"><input type="checkbox" value="GitHub" checked> GitHub</label><label class="platform"><input type="checkbox" value="Reddit" checked> Reddit</label><label class="platform"><input type="checkbox" value="Telegram"> Telegram</label><label class="platform"><input type="checkbox" value="Instagram"> Instagram</label><label class="platform"><input type="checkbox" value="TikTok"> TikTok</label><label class="platform"><input type="checkbox" value="X"> X / Twitter</label><label class="platform"><input type="checkbox" value="YouTube"> YouTube</label><label class="platform"><input type="checkbox" value="Twitch"> Twitch</label>
+</div>
+<div id="generatorResults" class="generator-results"></div>
+<p class="generator-note" id="generatorNote">Результаты появятся здесь. «Возможно свободен» означает, что публичный аккаунт не найден, но платформа может резервировать имя.</p>
+</div></div></section>
+\n<section class="features" id="features"><div class="wrap"><div class="section-head"><div><div class="eyebrow">02 / Что внутри</div><h2>Охота за именем проще</h2></div><p>От быстрого поиска до инструментов для тех, кто строит личный бренд или проект.</p></div><div class="feature-grid"><article class="feature"><div class="symbol">⌕</div><h3>Мультиплатформенный поиск</h3><p>Один запрос для нескольких социальных сетей вместо десятка открытых вкладок.</p></article><article class="feature"><div class="symbol">↗</div><h3>Короткие и редкие ники</h3><p>Подбор по длине, символам и ключевым словам. Поиск запоминающихся вариантов.</p></article><article class="feature"><div class="symbol">◷</div><h3>История проверок</h3><p>Сохраняй понравившиеся варианты и возвращайся к ним позже.</p></article><article class="feature"><div class="symbol">◎</div><h3>Единый бренд</h3><p>Сравнивай совпадение имени между платформами и собирай единый никнейм.</p></article><article class="feature"><div class="symbol">⌘</div><h3>Расширенные фильтры</h3><p>Фильтруй по длине, цифрам, подчёркиваниям и желаемому стилю.</p></article><article class="feature"><div class="symbol">♢</div><h3>Уведомления</h3><p>В перспективе можно будет отслеживать изменение статуса выбранных имён.</p></article></div></div></section>
 <section class="pricing" id="pricing"><div class="wrap"><div class="section-head"><div><div class="eyebrow">03 / Доступ и подписка</div><h2>Начни бесплатно</h2></div><p>Понятная модель: базовый поиск открыт всем, расширенные инструменты доступны по подписке.</p></div><div class="price-grid"><article class="price-card"><div class="plan">STARTER</div><div class="price">0 ₽ <small>/ навсегда</small></div><p>Чтобы попробовать поиск и подобрать свой первый ник.</p><ul><li>Базовая проверка формата</li><li>Ссылки на популярные платформы</li><li>Ограниченное число запросов</li></ul><button data-plan="Starter">Выбран бесплатно</button></article><article class="price-card featured"><div class="plan">HUNTER PRO · ПОЗЖЕ</div><div class="price">199 ₽ <small>/ месяц · концепт</small></div><p>Для тех, кому нужен расширенный поиск и больше контроля.</p><ul><li>Расширенные проверки доступности</li><li>Массовый поиск вариантов</li><li>История и избранное</li><li>Уведомления об изменениях</li></ul><button data-plan="Hunter Pro">Скоро будет доступно</button></article><article class="price-card"><div class="plan">BUSINESS · ПОЗЖЕ</div><div class="price">499 ₽ <small>/ месяц · концепт</small></div><p>Инструменты для команд, агентств и цифровых проектов.</p><ul><li>Несколько списков имён</li><li>Экспорт результатов</li><li>Совместная работа</li><li>Приоритетные проверки</li></ul><button data-plan="Business">Скоро будет доступно</button></article></div><div class="ad-slot">AD SPACE · МЕСТО ДЛЯ НЕНАВЯЗЧИВОЙ РЕКЛАМЫ В БЕСПЛАТНОМ ТАРИФЕ</div></div></section>
 <section class="faq" id="faq"><div class="wrap"><div class="eyebrow">04 / FAQ</div><h2 style="font-size:clamp(32px,4vw,48px);letter-spacing:-.06em;margin:12px 0">Частые вопросы</h2><div class="faq-list"><details><summary>USERHUNT уже проверяет, свободен ли ник?</summary><p>Пока нет. Текущая версия демонстрирует интерфейс, проверяет допустимый формат и открывает ссылки на профили. Реальная проверка требует серверной части и интеграций с платформами.</p></details><details><summary>Почему нельзя просто проверить всё из браузера?</summary><p>У разных соцсетей разные правила, ограничения и способы проверки. Некоторые запросы блокируются браузером или требуют официального API. Надёжная система должна проверять статусы на сервере и корректно обрабатывать ошибки.</p></details><details><summary>Будет ли подписка работать сейчас?</summary><p>Нет, тарифы пока показывают концепцию монетизации. Для оплаты понадобятся платёжный провайдер, серверная логика и пользовательские аккаунты.</p></details><details><summary>Можно ли использовать USERHUNT для поиска имени бренда?</summary><p>Да, идея сервиса подходит для личных брендов, каналов, стартапов и проектов, которым важно единое имя на разных площадках.</p></details></div></div></section>
 </main>
@@ -78,5 +104,32 @@ async function check(){
 }
 document.getElementById('checkBtn').addEventListener('click',check);input.addEventListener('keydown',e=>{if(e.key==='Enter')check()});
 document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',()=>notify(b.dataset.plan==='Starter'?'Базовый тариф бесплатный':'Подписка появится после запуска полной версии')));
-</script>
+
+const genButton=document.getElementById('generateBtn');
+genButton.addEventListener('click',async()=>{
+ const keyword=document.getElementById('genKeyword').value.trim();
+ const style=document.getElementById('genStyle').value;
+ const selected=[...document.querySelectorAll('#genPlatforms input:checked')].map(x=>x.value);
+ const out=document.getElementById('generatorResults');
+ const note=document.getElementById('generatorNote');
+ if(!keyword){notify('Введи ключевое слово');return}
+ if(!selected.length){notify('Выбери хотя бы одну платформу');return}
+ genButton.disabled=true;genButton.textContent='Ищем варианты…';out.innerHTML='<div class="result"><strong>Генерируем и проверяем варианты…</strong></div>';
+ try{
+  const response=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({keyword,style,platforms:selected})});
+  const data=await response.json();if(!response.ok)throw new Error(data.error||'Ошибка сервера');
+  out.innerHTML='';
+  if(!data.suggestions.length){const empty=document.createElement('p');empty.className='generator-note';empty.textContent='Подтверждённых кандидатов пока нет. Попробуй другое слово или выбери GitHub и Reddit, для которых доступна публичная проверка.';out.append(empty)}
+  data.suggestions.forEach(item=>{
+   const row=document.createElement('div');row.className='suggestion';const info=document.createElement('div');
+   const strong=document.createElement('strong');strong.textContent='@'+item.username;
+   const small=document.createElement('small');small.textContent='Возможно свободен: '+item.possiblyFreeOn.join(', ')+(item.unknownOn.length?' · Не проверено: '+item.unknownOn.join(', '):'');
+   info.append(strong,small);const copy=document.createElement('button');copy.textContent='Копировать';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(item.username);notify('Ник скопирован')}catch{notify('Не удалось скопировать')}});
+   row.append(info,copy);out.append(row);
+  });
+  note.textContent=data.note+' Проверено вариантов: '+data.checked+'.';
+ }catch(error){out.innerHTML='';const err=document.createElement('p');err.className='generator-note';err.textContent='Ошибка: '+error.message;out.append(err)}
+ finally{genButton.disabled=false;genButton.textContent='Сгенерировать ↗'}
+});
+\n</script>
 </body></html>
