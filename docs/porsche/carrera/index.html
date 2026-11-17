@@ -3,6 +3,28 @@
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#080808;color:#f3f3ef;font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}.top{height:76px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #292929}.logo{font:800 16px Manrope;letter-spacing:.25em}.back{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#aaa}.hero{min-height:74vh;display:flex;align-items:flex-end;padding:8vw;position:relative;overflow:hidden;background:#111}.hero:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#050505d9,transparent 90%),linear-gradient(0deg,#080808,transparent 75%),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=90') center/cover;filter:grayscale(100%) brightness(.7);animation:zoom 1.5s ease-out both}.hero-in{position:relative;max-width:850px}.tag,.kicker{font-size:10px;letter-spacing:.27em;text-transform:uppercase;color:#aaa}.hero h1{font:700 clamp(54px,10vw,130px)/.95 Manrope;letter-spacing:-.08em;margin:20px 0}.hero p{font-size:15px;line-height:1.9;color:#ccc;max-width:600px}.wrap{width:min(88%,1500px);margin:auto}.section{padding:100px 0}.heading{font:500 clamp(36px,5vw,68px)/1.05 Manrope;letter-spacing:-.065em;margin:15px 0 45px}.intro{font-size:15px;line-height:2;color:#aaa;max-width:900px}.facts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #292929;margin-top:50px}.fact{padding:25px;border-right:1px solid #292929;border-bottom:1px solid #292929;min-height:115px}.fact:nth-child(4n){border-right:0}.fact small{display:block;color:#888;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}.fact b{font:500 17px Manrope}.columns{display:grid;grid-template-columns:1fr 1fr;gap:70px}.list{list-style:none;padding:0;margin:0}.list li{padding:20px 0;border-bottom:1px solid #292929;color:#bbb;font-size:14px;line-height:1.8}.list li:before{content:'+';color:#fff;margin-right:14px}.note{background:#111;border-left:2px solid #777;padding:25px;color:#999;font-size:12px;line-height:1.8;margin-top:45px}.bottom{border-top:1px solid #292929;padding:30px 6vw;display:flex;justify-content:space-between;color:#777;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.btn{display:inline-block;padding:16px 22px;border:1px solid #eee;color:#080808;background:#eee;font-size:10px;letter-spacing:.15em;text-transform:uppercase;margin-top:25px;transition:.3s}.btn:hover{background:transparent;color:#fff}@keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}.fade{opacity:0;transform:translateY(25px);transition:.8s}.fade.show{opacity:1;transform:none}@media(max-width:750px){.hero{min-height:70vh;padding:9vw 6vw}.top{padding:0 6vw}.wrap{width:88%}.section{padding:75px 0}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(2n){border-right:0}.fact:nth-child(4n){border-right:0}.columns{grid-template-columns:1fr;gap:35px}.bottom{flex-direction:column;gap:15px}.hero p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade{opacity:1;transform:none}}
+
+/* ORANGE / BLACK visual refresh */
+body{font-size:14px;background:#080808;color:#f4f1ed}
+.top{border-bottom-color:#3a2619}
+.logo{color:#f4f1ed}
+.back,.tag,.kicker{color:#ff8733}
+.hero:before{filter:grayscale(85%) sepia(18%) brightness(.58)}
+.hero h1{font-size:clamp(50px,9.4vw,120px)}
+.hero p{font-size:13px}
+.heading{font-size:clamp(33px,4.7vw,63px)}
+.intro{font-size:13px}
+.fact{border-color:#30231b}
+.fact small{color:#ff8733}
+.fact b{font-size:15px}
+.list li{font-size:13px;border-bottom-color:#30231b}
+.list li:before{color:#ff6a00}
+.note{background:#120e0b;border-left-color:#ff6a00;font-size:11px}
+.btn{background:#ff6a00;border-color:#ff6a00;color:#080808}
+.btn:hover{background:transparent;color:#ff8733}
+.bottom{border-top-color:#30231b}
+@media(max-width:750px){.hero h1{font-size:clamp(48px,9vw,100px)}}
+
 </style></head><body><header class="top"><a class="logo" href="../">PORSCHE / 911</a><a class="back" href="../#range">← Все модели</a></header>
 <main><section class="hero"><div class="hero-in"><div class="tag">THE ORIGINAL SPIRIT · Классический спорткар на каждый день</div><h1>911 Carrera</h1><p>Базовая философия 911 в чистом виде: компактное купе, оппозитная «шестёрка» с двумя турбокомпрессорами и задний привод.</p><a class="btn" href="#specs">Технические характеристики ↓</a></div></section>
 <section class="section" id="specs"><div class="wrap"><div class="kicker">01 / Технический паспорт</div><h2 class="heading">Характеристики</h2><div class="facts"><div class="fact fade"><small>Мощность</small><b>394 л.с.</b></div><div class="fact fade"><small>0–100 км/ч</small><b>около 3,9 с</b></div><div class="fact fade"><small>Максимальная скорость</small><b>до 294 км/ч</b></div><div class="fact fade"><small>Привод</small><b>Задний</b></div><div class="fact fade"><small>Двигатель</small><b>3,0 л, оппозитный 6-цилиндровый biturbo</b></div><div class="fact fade"><small>Трансмиссия</small><b>8-ступенчатая PDK</b></div><div class="fact fade"><small>Кузов</small><b>Купе; в семействе также есть Cabriolet</b></div></div><div class="note">Показатели приведены как справочный ориентир для семейства или указанной версии. Фактические характеристики меняются в зависимости от модельного года, рынка, кузова, опций и методики измерения. Для конкретного автомобиля проверяйте официальный конфигуратор и документы производителя.</div></div></section>
