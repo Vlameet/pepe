@@ -100,6 +100,55 @@ app.post("/api/check", async (req, res) => {
   });
 });
 
+
+function generateCandidates(keyword, style) {
+  const base = keyword.toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 18);
+  if (!base) return [];
+  const sets = {
+    short: [base, base + "x", base + "hq", "its" + base, "the" + base, base + "io", base + "co", base + "lab", base + "one", "hey" + base],
+    clean: [base, "the" + base, "its" + base, base + "studio", base + "online", base + "world", base + "daily", base + "club", base + "space", base + "works"],
+    gamer: [base + "gg", base + "plays", base + "x", base + "fps", "real" + base, base + "exe", base + "zero", base + "core", base + "gaming", "not" + base],
+    creative: ["by" + base, base + "ly", base + "verse", base + "nova", base + "wave", base + "void", base + "zen", "neo" + base, base + "lab", base + "mode"]
+  };
+  return [...new Set(sets[style] || sets.clean)].filter(n => n !== base || n.length >= 3).slice(0, 10);
+}
+
+app.post("/api/generate", async (req, res) => {
+  const keyword = typeof req.body?.keyword === "string" ? req.body.keyword.trim() : "";
+  const style = ["short", "clean", "gamer", "creative"].includes(req.body?.style) ? req.body.style : "clean";
+  const selected = Array.isArray(req.body?.platforms) ? req.body.platforms : ["GitHub", "Reddit"];
+  const chosen = [...new Set(selected)].filter(p => Object.hasOwn(platforms, p));
+  if (!keyword || keyword.length > 24 || !/^[a-zA-Z0-9 _.-]+$/.test(keyword)) {
+    return res.status(400).json({ error: "Введи ключевое слово длиной до 24 символов: латиница, цифры, пробел, точка, дефис или подчёркивание." });
+  }
+  if (!chosen.length) return res.status(400).json({ error: "Выбери хотя бы одну платформу." });
+
+  const candidates = generateCandidates(keyword, style);
+  const results = [];
+  // Keep external requests modest and avoid hammering social platforms.
+  for (let i = 0; i < candidates.length; i += 2) {
+    const batch = candidates.slice(i, i + 2);
+    const checked = await Promise.all(batch.map(async username => {
+      const checks = await Promise.all(chosen.map(p => checkPlatform(p, username)));
+      return {
+        username,
+        results: checks,
+        possiblyFreeOn: checks.filter(x => x.status === "possibly_available").map(x => x.platform),
+        takenOn: checks.filter(x => x.status === "taken").map(x => x.platform),
+        unknownOn: checks.filter(x => x.status === "unknown").map(x => x.platform)
+      };
+    }));
+    results.push(...checked);
+  }
+  const suggestions = results.filter(x => x.possiblyFreeOn.length > 0 && x.takenOn.length === 0);
+  res.json({
+    keyword,
+    suggestions,
+    checked: results.length,
+    note: "В список попадают только имена, для которых хотя бы одна платформа не обнаружила публичный аккаунт и ни одна не подтвердила занятость. Это предварительный сигнал, а не гарантия регистрации. Для остальных платформ статус может быть неизвестен."
+  });
+});
+
 app.get("/api/health", (_req, res) => res.json({ ok: true, service: "USERHUNT API" }));
 app.use(express.static(FRONTEND_DIR));
 app.get("*", (_req, res) => res.sendFile(path.join(FRONTEND_DIR, "index.html")));
