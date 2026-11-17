@@ -28,6 +28,63 @@ footer{padding:35px 6vw;border-top:1px solid var(--line);display:flex;justify-co
 @media(max-width:900px){.model-grid{grid-template-columns:repeat(2,1fr)}.viewer-shell{grid-template-columns:1fr}.viewer-frame{height:460px}.timeline{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:650px){header{height:68px;padding:0 6vw}.nav{display:none}.menu{display:block}.nav.open{display:flex;position:absolute;top:68px;left:0;right:0;padding:22px 6vw;background:#090909;flex-direction:column;gap:20px;border-bottom:1px solid #333}.wrap{width:88%}.hero{padding:0 6vw 12vh;min-height:90svh}.hero-bg{background-position:58% center}.scroll-note{display:none}.hero h1{font-size:clamp(88px,22vw,145px)}.section-head{display:block;margin-bottom:35px}.section-intro{margin-top:20px}.story-grid{grid-template-columns:1fr}.photo{min-height:280px}.story-copy{min-height:330px}.timeline{grid-template-columns:repeat(2,1fr)}.model-grid{grid-template-columns:1fr}.model-card{min-height:350px}.stats{grid-template-columns:repeat(2,1fr);margin-top:50px}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.engineering{grid-template-columns:1fr}.engineering article{min-height:210px}.brand-grid{grid-template-columns:1fr}.brand-card{min-height:190px}.wide-image{margin:0 6vw;height:470px}.viewer-models{grid-template-columns:1fr}.viewer-frame{height:420px}.quote{padding:90px 7vw}footer{padding:25px 6vw;flex-direction:column}.footer-links{flex-wrap:wrap}.hero-actions{gap:18px;flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* ORANGE / BLACK visual refresh */
+:root{--bg:#080808;--panel:#101010;--panel2:#17120f;--white:#f4f1ed;--muted:#a39a92;--line:#30231b;--accent:#ff6a00}
+body{font-size:14px}
+.progress{background:#ff6a00}
+header{border-bottom-color:#ff6a0030}
+.brand span,.nav a:hover,.text-link:hover{color:#ff7a1a}
+.nav{font-size:9px}
+.hero-bg{filter:grayscale(100%) brightness(.55) sepia(.18) saturate(1.5)}
+.eyebrow{color:#ff8a3d}.eyebrow:before{background:#ff6a00}
+.hero h1 span{color:#ff6a00}
+.hero-copy{font-size:13px}
+.button{background:#ff6a00;border-color:#ff6a00;color:#080808}
+.button:hover{background:transparent;color:#ff8a3d}
+.text-link{font-size:9px}
+.kicker,.model-type{color:#ff8733}
+.section h2{font-size:clamp(38px,5.9vw,84px)}
+.section-intro,.story-copy p{font-size:12px}
+.photo img{filter:grayscale(100%) sepia(18%)}
+.photo:hover img{filter:grayscale(35%) sepia(20%)}
+.story-copy{background:#101010}
+.story-index{color:#4a2a17}
+.era{background:#0b0b0b}.era b{color:#ff8733}
+.model-card{background:#111;border-color:#30231b}
+.model-card:hover{border-color:#ff6a00}
+.model-card img{filter:grayscale(75%) sepia(18%) brightness(.58)}
+.model-card:hover img{filter:grayscale(25%) sepia(18%) brightness(.65)}
+.model-tag{border-color:#ff6a00;color:#ff9a55}
+.spec-wrap{border-color:#30231b}
+.spec-table th{background:#17110d;color:#ff8733}
+.spec-table th,.spec-table td{border-bottom-color:#30231b}
+.spec-table td{font-size:12px}
+.spec-table td:first-child{font-size:15px}
+.spec-table tbody tr:hover{background:#1a120d}
+.stat strong{color:#ff8733}
+.wide-image img{filter:grayscale(85%) sepia(18%) brightness(.62)}
+.wide-caption small{color:#ff8733}
+.engineering{background:#30231b}
+.engineering article{background:#100d0b}
+.engineering .num{color:#a84c12}
+.engineering h3{font-size:21px}
+.engineering p{font-size:12px}
+.porsche-world{background:#0d0b09;color:#f4f1ed}
+.porsche-world .kicker{color:#ff8733}
+.porsche-world .section-intro{color:#a39a92}
+.brand-grid{background:#30231b}
+.brand-card{background:#11100e}
+.brand-card:hover{background:#1b130e}
+.brand-card small{color:#ff8733}
+.brand-card p{color:#aaa}
+.viewer-section{background:#0b0908}
+.viewer-frame{border-color:#4a2a17}
+.quote-mark{color:#ff6a00}
+.quote cite{color:#ff8733}
+footer{border-top-color:#30231b}
+@media(max-width:650px){.nav.open{background:#100d0b;border-bottom-color:#4a2a17}}
+
 </style>
 </head>
 <body>
