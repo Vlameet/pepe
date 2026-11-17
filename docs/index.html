@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#101820">
+<title>Змейка</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;padding:20px 16px;background:#101820;color:#f3f7f5;display:flex;justify-content:center}
+main{width:min(100%,430px);text-align:center}h1{margin:4px 0 8px;font-size:30px}.sub{color:#a9bbc4;margin:0 0 18px}
+.stats{display:flex;gap:12px;margin-bottom:12px}.stat{flex:1;padding:11px;border-radius:12px;background:#1c2b36}
+.stat small{display:block;color:#a9bbc4}.stat strong{font-size:22px}
+canvas{display:block;width:100%;aspect-ratio:1;background:#172630;border:2px solid #34505c;border-radius:14px;touch-action:none}
+button{border:0;border-radius:12px;padding:13px 18px;background:#62d98b;color:#102019;font-size:16px;font-weight:700}
+#start{width:100%;margin:14px 0 10px}.controls{display:grid;grid-template-columns:repeat(3,64px);grid-template-rows:repeat(2,54px);gap:8px;justify-content:center;margin-top:8px}
+.controls button{padding:0;font-size:24px;background:#29414d;color:white;touch-action:manipulation}
+.up{grid-column:2}.left{grid-column:1;grid-row:2}.down{grid-column:2;grid-row:2}.right{grid-column:3;grid-row:2}
+#message{min-height:24px;color:#b9c9cf;margin-top:8px}
+</style>
+</head>
+<body><main>
+<h1>Змейка</h1><p class="sub">Собирай яблоки и не кусай себя.</p>
+<div class="stats"><div class="stat"><small>Очки</small><strong id="score">0</strong></div><div class="stat"><small>Рекорд</small><strong id="best">0</strong></div></div>
+<canvas id="game" width="400" height="400" aria-label="Игровое поле змейки"></canvas>
+<button id="start">Начать игру</button>
+<div class="controls"><button class="up" data-dir="up">▲</button><button class="left" data-dir="left">◀</button><button class="down" data-dir="down">▼</button><button class="right" data-dir="right">▶</button></div>
+<div id="message">Нажми «Начать игру».</div>
+</main>
+<script>
+(() => {
+const tg=window.Telegram&&window.Telegram.WebApp;if(tg){tg.ready();tg.expand();}
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),message=document.getElementById('message'),startBtn=document.getElementById('start');
+const cell=20,count=20;let snake,food,dir,next,score,timer,running=false,best=Number(localStorage.getItem('snakeBest')||0);bestEl.textContent=best;
+function placeFood(){let p;do{p={x:Math.floor(Math.random()*count),y:Math.floor(Math.random()*count)}}while(snake.some(s=>s.x===p.x&&s.y===p.y));return p}
+function reset(){snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];dir={x:1,y:0};next={x:1,y:0};score=0;scoreEl.textContent=0;food=placeFood();draw()}
+function draw(){ctx.fillStyle='#172630';ctx.fillRect(0,0,400,400);ctx.strokeStyle='#203640';for(let i=0;i<=count;i++){ctx.beginPath();ctx.moveTo(i*cell,0);ctx.lineTo(i*cell,400);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i*cell);ctx.lineTo(400,i*cell);ctx.stroke()}ctx.fillStyle='#ff6268';ctx.beginPath();ctx.arc(food.x*cell+10,food.y*cell+10,7,0,Math.PI*2);ctx.fill();snake.forEach((p,i)=>{ctx.fillStyle=i?'#51c77d':'#8af0a8';ctx.beginPath();ctx.roundRect(p.x*cell+2,p.y*cell+2,16,16,5);ctx.fill()})}
+function finish(){running=false;clearInterval(timer);startBtn.textContent='Играть ещё';message.textContent='Игра окончена. Результат: '+score}
+function step(){dir=next;const head={x:snake[0].x+dir.x,y:snake[0].y+dir.y},ate=head.x===food.x&&head.y===food.y,body=ate?snake:snake.slice(0,-1);if(head.x<0||head.y<0||head.x>=count||head.y>=count||body.some(p=>p.x===head.x&&p.y===head.y)){finish();return}snake.unshift(head);if(ate){score+=10;scoreEl.textContent=score;food=placeFood();if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('snakeBest',String(best))}}else snake.pop();draw()}
+function turn(name){const dirs={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}},d=dirs[name];if(d&&(d.x!==-dir.x||d.y!==-dir.y))next=d}
+function start(){clearInterval(timer);reset();running=true;startBtn.textContent='Начать заново';message.textContent='Поехали!';timer=setInterval(step,125)}
+startBtn.addEventListener('click',start);document.querySelectorAll('[data-dir]').forEach(b=>b.addEventListener('click',()=>turn(b.dataset.dir)));
+document.addEventListener('keydown',e=>{const m={ArrowUp:'up',w:'up',ArrowDown:'down',s:'down',ArrowLeft:'left',a:'left',ArrowRight:'right',d:'right'};if(m[e.key]){e.preventDefault();turn(m[e.key])}if(e.key===' '&&!running)start()});
+let touch=null;canvas.addEventListener('touchstart',e=>{const t=e.changedTouches[0];touch={x:t.clientX,y:t.clientY}},{passive:true});canvas.addEventListener('touchend',e=>{if(!touch)return;const t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;if(Math.max(Math.abs(dx),Math.abs(dy))>20)turn(Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up'));touch=null},{passive:true});
+reset();
+})();
+</script></body></html>
