@@ -14,6 +14,7 @@ The service serves the frontend from `docs/userhunt` and the API from the same o
 ## API
 - `GET /api/health`
 - `POST /api/check`
+- `POST /api/generate`
 
 Example body:
 ```json
@@ -21,3 +22,9 @@ Example body:
 ```
 
 GitHub and Reddit use public lookup endpoints. Other platforms currently return `unknown`, not a guessed availability result. A 404 is only a possible-availability signal because names may be reserved. Respect each platform's terms and rate limits.
+
+## Current MVP limitations
+- GitHub and Reddit return public profile-existence signals.
+- Telegram, Instagram, TikTok, X, YouTube and Twitch currently return `unknown`; do not present these as verified availability.
+- A `404` is only a possible-availability signal, not a guarantee that registration is allowed.
+- Accounts, persistent search history and payments are not implemented yet.
